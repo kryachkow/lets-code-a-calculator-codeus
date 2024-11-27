@@ -2,6 +2,7 @@ package codeus.assignment;
 
 import exception.InvalidCalculusTokenException;
 import exception.DivisionByZeroException;
+import exception.TaskNotCompletedException;
 
 import java.util.ArrayDeque;
 
@@ -67,74 +68,7 @@ public class Calculator {
      * @throws DivisionByZeroException if the expression contains a division by zero
      */
     public double calculate(String expression) {
-        ArrayDeque<Double> numbers = new ArrayDeque<>();
-        ArrayDeque<String> operators = new ArrayDeque<>();
-
-        String[] tokens = expression.split(" ");
-        int length = tokens.length;
-
-        for (int i = 0; i < length; i++) {
-            String token = tokens[i].trim();
-
-            if (token.isEmpty()) {
-                continue;
-            }
-
-            if (token.equals("(")) {
-                operators.push(token);
-            } else if (token.equals(")")) {
-                while (!operators.peek().equals("(")) {
-                    double result = performOperation(numbers, operators);
-                    numbers.push(result);
-                }
-                operators.pop(); // Pop '(' from the stack
-            } else if (OperationalStrategy.getOperation(token) != null) {
-                while (!operators.isEmpty() && priority(token) <= priority(operators.peek())) {
-                    double result = performOperation(numbers, operators);
-                    numbers.push(result);
-                }
-                operators.push(token);
-            } else {
-                try {
-                    double number = Double.parseDouble(token);
-                    numbers.push(number);
-                } catch (NumberFormatException e) {
-                    throw new InvalidCalculusTokenException("Invalid token: " + token);
-                }
-            }
-        }
-
-        while (!operators.isEmpty()) {
-            double result = performOperation(numbers, operators);
-            numbers.push(result);
-        }
-
-        return numbers.pop();
-    }
-
-    private double performOperation(ArrayDeque<Double> numbers, ArrayDeque<String> operators) {
-        if (numbers.size() < 2) {
-            throw new InvalidCalculusTokenException("Insufficient operands");
-        }
-        double b = numbers.pop();
-        double a = numbers.pop();
-        String op = operators.pop();
-        CalculusCommand command = OperationalStrategy.getOperation(op);
-        if (command == null) {
-            throw new InvalidCalculusTokenException("Unknown operator: " + op);
-        }
-        if (op.equals("/") && b == 0) {
-            throw new DivisionByZeroException("Division by zero");
-        }
-        return command.execute(a, b);
-    }
-
-    private int priority(String operator) {
-        return switch (operator) {
-            case "+", "-" -> 1;
-            case "*", "/", "%" -> 2;
-            default -> -1;
-        };
+        throw new TaskNotCompletedException();
     }
 
 }

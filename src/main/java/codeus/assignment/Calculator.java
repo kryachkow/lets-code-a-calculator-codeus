@@ -71,4 +71,23 @@ public class Calculator {
         throw new TaskNotCompletedException();
     }
 
+
+    /**
+     * Performs a mathematical operation using two operands from the stack and an operator.
+     *
+     * Check if there are at least two operands in the stack
+     * Pop the top two operands from the stack
+     * Check the corresponding operation
+     * Check for division by zero, if applicable
+     * Execute the operation and return the result
+     *
+     * @param numbers   the stack of operand numbers
+     * @param operators the stack of operators
+     * @return the result of the operation
+     * @throws InvalidCalculusTokenException if there are insufficient operands or an unknown operator is encountered
+     * @throws DivisionByZeroException       if a division by zero is attempted
+     */
+    private double performOperation(ArrayDeque<Double> numbers, ArrayDeque<String> operators) {
+        return 0;
+    }
 }

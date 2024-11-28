@@ -40,6 +40,8 @@ Useful links:
 https://aquarchitect.github.io/swift-algorithm-club/Shunting%20Yard/ Brief algorithm explanation
 https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fpeople.cs.vt.edu%2F~shaffer%2FAVCourse%2FShuntingYard.ppt&wdOrigin=BROWSELINK step by step example 
 
+Postfix calculation example 
 
+![img.png](img.png)
 
 If you feel that you are stuck try to make atomic requests to chat gpt
